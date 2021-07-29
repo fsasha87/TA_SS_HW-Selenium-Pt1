@@ -33,15 +33,15 @@ public class HardCodedTests {
         WebElement signInButton = driver.findElement(By.className("header-auth__signin"));
         signInButton.click();
         WebElement mailField = driver.findElement(By.id("username"));
-        mailField.sendKeys("fsasha87@ukr.net");
+        mailField.sendKeys("ivanhorintest@gmail.com");
         WebElement continueButton = driver.findElement(By.id("kc-login-next"));
         continueButton.click();
         WebElement passField = driver.findElement(By.id("password"));
-        passField.sendKeys("MyPass");
+        passField.sendKeys("ivanhorintestPassword");
         WebElement signInButtonOnPassWindow = driver.findElement(By.id("kc-login"));
         signInButtonOnPassWindow.click();
         WebElement userName = driver.findElement(By.className("user-info__name"));
-        Assert.assertTrue(userName.isDisplayed());
+        Assert.assertTrue(userName.isDisplayed(), "Element isn't displayed");
     }
 
     @Test(description = "verify user was not logged in with incorrect password")
