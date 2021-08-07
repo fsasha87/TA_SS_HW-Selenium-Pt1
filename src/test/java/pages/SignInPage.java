@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -20,44 +19,55 @@ public class SignInPage extends BasePage {
     }
 
     public SignInPage enterEmail(String email) {
-        driver.findElement(mailField).sendKeys(email);
-        LOG.info("Mail was entered.");
+        getElement(mailField).sendKeys(email);
+        LOG.info(String.format("Mail '%s' was written.", email));
         return this;
     }
 
     public SignInPage clickContinueButton() {
-        driver.findElement(continueButton).click();
+        getElement(continueButton).click();
         LOG.info("Continue button clicked.");
         return this;
     }
 
     public SignInPage enterPassword(String password) {
-        driver.findElement(passField).sendKeys(password);
+        getElement(passField).sendKeys(password);
         LOG.info("Password was entered.");
         return this;
     }
 
     public HomePage clickSignInButton() {
-        driver.findElement(signInButtonOnPassWindow).click();
+        getElement(signInButtonOnPassWindow).click();
         LOG.info("Sign in button clicked.");
         return new HomePage();
     }
 
-    public void verifyFailedLoginErrorMessageDisplayed() {
-        WebElement errorMessageElement = driver.findElement(errorMessage);
+    public SignInPage login(String email, String password){
+        enterEmail(email);
+        clickContinueButton();
+        enterPassword(password);
+        clickSignInButton();
+        return  this;
+    }
+
+    public SignInPage verifyFailedLoginErrorMessageDisplayed() {
+        WebElement errorMessageElement = getElement(errorMessage);
         Assert.assertTrue(errorMessageElement.isEnabled(), "Error message is not enabled");
         LOG.info("Error message is displayed");
+        return this;
     }
 
-    public void checkContinueButtonIsDisable() {
-        WebElement continueButtonElement = driver.findElement((continueButton));
+    public SignInPage checkContinueButtonIsDisable() {
+        WebElement continueButtonElement = getElement((continueButton));
         Assert.assertFalse(continueButtonElement.isEnabled(), "Continue button is enabled");
         LOG.info("Continue button is disabled");
+        return this;
     }
 
-    public void checkPasswordFieldIsEnable() {
-        WebElement passFieldElement = driver.findElement((passField));
+    public SignInPage checkPasswordFieldIsEnable() {
+        WebElement passFieldElement = getElement((passField));
         Assert.assertTrue(passFieldElement.isEnabled(), "Password field is disabled");
         LOG.info("Password field is enabled");
+        return this;
     }
 }

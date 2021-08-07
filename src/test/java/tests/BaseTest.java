@@ -1,15 +1,23 @@
 package tests;
 
+import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-import utils.Browser;
+import constants.Browser;
+import pages.BlogPage;
+import pages.HomePage;
+import pages.SignInPage;
+import pages.TrainingListPage;
 import utils.DriverFactory;
 
-import java.util.concurrent.TimeUnit;
+import java.lang.reflect.Method;
+
+import static org.openqa.selenium.Keys.ENTER;
 
 public abstract class BaseTest {
     private static WebDriver driver;
+    private Logger LOG = Logger.getLogger(BaseTest.class);
 
     public static WebDriver getDriver() {
         return driver;
@@ -20,8 +28,8 @@ public abstract class BaseTest {
         driver = DriverFactory.getDriver(Browser.CHROME);
     }
 
-    @AfterMethod
-    public void tearDown() {
+    @AfterMethod (alwaysRun = true)
+    public void tearDown(){
         driver.quit();
     }
 
@@ -34,5 +42,6 @@ public abstract class BaseTest {
     public Object[][] dataProviderMethod2() {
         return new Object[][]{{"1234567890123456789012345678901234567890123456789012345678901234@ukr.net"}, {"fsasha@i.ua"}, {"fsasha@ukr.netnetnetn"}};
     }
+
 
 }
