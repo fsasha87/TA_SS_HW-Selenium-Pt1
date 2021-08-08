@@ -1,5 +1,8 @@
 package constants;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 public enum Browser {
     CHROME("src/main/resources/chromedriver.exe", "webdriver.chrome.driver"),
     IE("src/main/resources/geckodriver.exe", "webdriver.ie.driver"),

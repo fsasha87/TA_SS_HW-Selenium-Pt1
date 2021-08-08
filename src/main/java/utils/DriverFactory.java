@@ -14,7 +14,6 @@ public class DriverFactory {
 
     public static void initDriver(Browser browser) {
         System.setProperty(browser.getDRIVER_NAME(), browser.getDRIVER_LOCATION());
-        driver = new ChromeDriver();
 
         switch (browser) {
             case CHROME:
@@ -30,7 +29,6 @@ public class DriverFactory {
                 driver = new OperaDriver();
                 break;
         }
-
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
