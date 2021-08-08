@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import pages.BlogPage;
 import pages.HomePage;
 import pages.SignInPage;
-import pages.TrainingListPage;
 
 public class BlogTest extends BaseTest {
     @DataProvider(name = "dP3")

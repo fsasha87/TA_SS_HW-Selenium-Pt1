@@ -6,13 +6,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
+
 import java.util.concurrent.TimeUnit;
 
 public class DriverFactory {
     private static WebDriver driver;
 
-    public static void initDriver (Browser browser) {
-                System.setProperty(browser.getDRIVER_NAME(), browser.getDRIVER_LOCATION());
+    public static void initDriver(Browser browser) {
+        System.setProperty(browser.getDRIVER_NAME(), browser.getDRIVER_LOCATION());
+        driver = new ChromeDriver();
+
         switch (browser) {
             case CHROME:
                 driver = new ChromeDriver();
@@ -39,7 +42,7 @@ public class DriverFactory {
     public static void quitDriver() {
         if (driver != null) {
             driver.quit();
-            driver=null;
+            driver = null;
         }
     }
 
