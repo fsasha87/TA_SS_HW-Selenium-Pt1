@@ -20,4 +20,5 @@ public enum Browser {
     public String getDRIVER_NAME() {
         return DRIVER_NAME;
     }
+
 }

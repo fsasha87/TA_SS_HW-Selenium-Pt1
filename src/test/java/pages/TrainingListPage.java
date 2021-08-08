@@ -1,13 +1,13 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.asserts.SoftAssert;
+import utils.DriverFactory;
 
 import java.util.List;
 import java.util.logging.Logger;
+import static utils.DriverFactory.getDriver;
 
 public class TrainingListPage extends BasePage {
     private static final Logger LOG = Logger.getLogger(String.valueOf(TrainingListPage.class));
@@ -41,7 +41,7 @@ public class TrainingListPage extends BasePage {
     }
 
     public TrainingListPage clickCheckboxFilter(String value) {
-        WebElement checkboxFilterElement = driver.findElement(By.xpath(String.format(checkboxFilter, value)));
+        WebElement checkboxFilterElement = getDriver().findElement(By.xpath(String.format(checkboxFilter, value)));
         if (!checkboxFilterElement.isSelected()) {
             clickWithJavaScript(checkboxFilterElement);
         }
@@ -50,7 +50,7 @@ public class TrainingListPage extends BasePage {
     }
 
     public TrainingListPage uncheckCheckboxFilter(String value) {
-        WebElement checkboxFilterElement = driver.findElement(By.xpath(String.format(checkboxFilter, value)));
+        WebElement checkboxFilterElement = getDriver().findElement(By.xpath(String.format(checkboxFilter, value)));
         if (checkboxFilterElement.isSelected()) {
             clickWithJavaScript(checkboxFilterElement);
         }
@@ -89,7 +89,7 @@ public class TrainingListPage extends BasePage {
     }
 
     public TrainingListPage clickLocationCity (String value) {
-        WebElement locationCityElement = driver.findElement(By.xpath(String.format(locationCity, value)));
+        WebElement locationCityElement = DriverFactory.getDriver().findElement(By.xpath(String.format(locationCity, value)));
         if (!locationCityElement.isSelected()) {
             clickWithJavaScript(locationCityElement);
         }

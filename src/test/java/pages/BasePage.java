@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,18 +9,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-import static tests.BaseTest.getDriver;
+import static utils.DriverFactory.getDriver;
 
 public abstract class BasePage {
-
-    WebDriver driver;
     WebDriverWait wait;
     JavascriptExecutor executor;
 
     public BasePage() {
-        this.driver = getDriver();
-        wait = new WebDriverWait(driver, 10);
-        executor = (JavascriptExecutor) driver;
+        wait = new WebDriverWait(getDriver(), 10);
+        executor = (JavascriptExecutor) getDriver();
     }
 
     void proceedToPage(final String url) {
@@ -35,7 +31,7 @@ public abstract class BasePage {
 
 
     List<WebElement> getElements(By locator) {
-        return driver.findElements(locator);
+        return getDriver().findElements(locator);
     }
 
     void moveToElement(By locator) {
@@ -43,6 +39,7 @@ public abstract class BasePage {
         WebElement webElement = getElement(locator);
         actions.moveToElement(webElement);
     }
+
     void clickWithJavaScript(WebElement element) {
         executor.executeScript("arguments[0].click()", element);
     }

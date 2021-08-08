@@ -1,36 +1,29 @@
 package tests;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
-import constants.Browser;
-import pages.BlogPage;
-import pages.HomePage;
-import pages.SignInPage;
-import pages.TrainingListPage;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
 import utils.DriverFactory;
 
 import java.lang.reflect.Method;
 
-import static org.openqa.selenium.Keys.ENTER;
+import static constants.Browser.CHROME;
 
 public abstract class BaseTest {
-    private static WebDriver driver;
     private Logger LOG = Logger.getLogger(BaseTest.class);
 
-    public static WebDriver getDriver() {
-        return driver;
-    }
 
     @BeforeMethod
-    public void setUp() {
-        driver = DriverFactory.getDriver(Browser.CHROME);
+    public void setUp(final Method method) {
+        DriverFactory.initDriver(CHROME);
+        LOG.info(String.format("Test '%s' started.",method.getName()));
     }
 
-    @AfterMethod (alwaysRun = true)
-    public void tearDown(){
-        driver.quit();
+    @AfterMethod(alwaysRun = true)
+    public void tearDown(final Method method) {
+        LOG.info(String.format("Test '%s' is completed", method.getName()));
+        DriverFactory.quitDriver();
     }
 
 }

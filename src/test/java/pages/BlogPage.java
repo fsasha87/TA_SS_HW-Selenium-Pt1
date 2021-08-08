@@ -20,6 +20,4 @@ public class BlogPage extends BasePage {
         }
         return new BlogPage();
     }
-
-
 }

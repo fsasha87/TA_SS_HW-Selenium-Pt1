@@ -4,9 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
 import java.util.logging.Logger;
-
 import static constants.Constants.HOME_PAGE_URL;
 
 public class HomePage extends BasePage {
