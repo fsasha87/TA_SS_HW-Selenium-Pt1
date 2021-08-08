@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.util.logging.Logger;
 
@@ -31,11 +32,20 @@ public class HomePage extends BasePage {
         return new SignInPage();
     }
 
-    public TrainingListPage verifyUserNameDisplayed() {
+    public SignInPage verifyUserNameDisplayed() {
         WebElement userNameElement = getElement(userName);
         LOG.info("User Name is displayed on the top-right conner");
         Assert.assertTrue(userNameElement.isDisplayed(), "Element isn't displayed");
-        return new TrainingListPage();
+        return new SignInPage();
+    }
+
+    public SignInPage verifyUserNameDisplayedBySoftAssert() {
+        SoftAssert softAssert = new SoftAssert();
+        WebElement userNameElement = getElement(userName);
+        LOG.info("User Name is displayed on the top-right conner");
+        softAssert.assertTrue(userNameElement.isDisplayed(), "Element isn't displayed");
+        softAssert.assertAll();
+        return new SignInPage();
     }
 
     public TrainingListPage clicktTrainingsListButton() {

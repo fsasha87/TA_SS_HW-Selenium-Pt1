@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.util.logging.Logger;
 
@@ -52,22 +53,30 @@ public class SignInPage extends BasePage {
 
     public SignInPage verifyFailedLoginErrorMessageDisplayed() {
         WebElement errorMessageElement = getElement(errorMessage);
-        Assert.assertTrue(errorMessageElement.isEnabled(), "Error message is not enabled");
+        Assert.assertTrue(errorMessageElement.isDisplayed(), "Error message is not enabled");
         LOG.info("Error message is displayed");
         return this;
     }
 
     public SignInPage checkContinueButtonIsDisable() {
-        WebElement continueButtonElement = getElement((continueButton));
+        WebElement continueButtonElement = getElement(continueButton);
         Assert.assertFalse(continueButtonElement.isEnabled(), "Continue button is enabled");
         LOG.info("Continue button is disabled");
         return this;
     }
 
-    public SignInPage checkPasswordFieldIsEnable() {
+    public SignInPage checkPasswordFieldIsDisplayed() {
         WebElement passFieldElement = getElement((passField));
-        Assert.assertTrue(passFieldElement.isEnabled(), "Password field is disabled");
-        LOG.info("Password field is enabled");
+        Assert.assertTrue(passFieldElement.isDisplayed(), "Password field is disabled");
+        LOG.info("Password field is displayed");
+        return this;
+    }
+    public SignInPage checkPasswordFieldIsDisplayedBySoftAssert() {
+        SoftAssert softAssert = new SoftAssert();
+        WebElement passFieldElement = getElement((passField));
+        softAssert.assertTrue(passFieldElement.isDisplayed(), "Password field is disabled");
+        LOG.info("Password field is displayed");
+        softAssert.assertAll();
         return this;
     }
 }

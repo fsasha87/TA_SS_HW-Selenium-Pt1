@@ -1,6 +1,6 @@
 package tests;
-
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.HomePage;
 import pages.SignInPage;
 import pages.TrainingListPage;

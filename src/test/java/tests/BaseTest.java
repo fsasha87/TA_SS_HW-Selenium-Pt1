@@ -33,15 +33,4 @@ public abstract class BaseTest {
         driver.quit();
     }
 
-    @DataProvider(name = "dP1")
-    public Object[][] dataProviderMethod() {
-        return new Object[][]{{"fsashaukr.net"}, {"@fsasha@ukr.net"}, {"fsasha@ukrnet"}, {"12345678901234567890123456789012345678901234567890123456789012345@ukr.net"}, {"fsasha@ukr.n"}, {"fsasha@ukr.netnetnetne"}};
-    }
-
-    @DataProvider(name = "dP2")
-    public Object[][] dataProviderMethod2() {
-        return new Object[][]{{"1234567890123456789012345678901234567890123456789012345678901234@ukr.net"}, {"fsasha@i.ua"}, {"fsasha@ukr.netnetnetn"}};
-    }
-
-
 }

@@ -12,28 +12,22 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverFactory {
     private static WebDriver driver;
-    private static final String DRIVER_PATH = "src/main/resources/";
     public static WebDriver getDriver(Browser browser) {
-        File file;
         switch (browser) {
             case CHROME:
-                file = new File(DRIVER_PATH + "chromedriver.exe");
-                System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+                System.setProperty(Browser.CHROME.getDRIVER_NAME(), Browser.CHROME.getDRIVER_LOCATION());
                 driver = new ChromeDriver();
                 break;
             case IE:
-                file = new File(DRIVER_PATH + "IEDriverServer.exe");
-                System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
+                System.setProperty(Browser.IE.getDRIVER_NAME(), Browser.IE.getDRIVER_LOCATION());
                 driver = new InternetExplorerDriver();
                 break;
             case FIREFOX:
-                file = new File(DRIVER_PATH + "geckodriver.exe");
-                System.setProperty("webdriver.gecko.driver", file.getAbsolutePath());
+                System.setProperty(Browser.FIREFOX.getDRIVER_NAME(), Browser.FIREFOX.getDRIVER_LOCATION());
                 driver = new FirefoxDriver();
                 break;
             case OPERA:
-                file = new File(DRIVER_PATH + "operadriver.exe");
-                System.setProperty("webdriver.opera.driver", file.getAbsolutePath());
+                System.setProperty(Browser.OPERA.getDRIVER_NAME(), Browser.OPERA.getDRIVER_LOCATION());
                 driver = new OperaDriver();
                 break;
         }
